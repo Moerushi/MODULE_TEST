@@ -1,0 +1,29 @@
+- Animals
+  id: Integer
+  name: String
+  birthday: Date
+
+    - Pets
+      isPet: Boolean
+        - Cat
+          type: String
+          commands: ArrayList<String>
+        - Dog
+          type: String
+          commands: ArrayList<String>
+        - Hamster
+          type: String
+          commands: ArrayList<String>
+
+    - PackAnimals
+      isPet: Boolean
+        - Horse
+          type: String
+          commands: ArrayList<String>
+        - Camel
+          type: String
+          commands: ArrayList<String>
+        - Donkey
+          type: String
+          commands: ArrayList<String>
+
