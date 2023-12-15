@@ -1,0 +1,167 @@
+nikita@ubuntuM1:~$ ls
+Desktop  Documents  Downloads  Music  Pictures  Public  users  Videos
+nikita@ubuntuM1:~$ cat > Pets.txt
+Dogs
+Cats
+Hamstars
+nikita@ubuntuM1:~$ cat > PackAnimals.txt
+Horses
+Camels
+Donkeys
+nikita@ubuntuM1:~$ cat Pets.txt PackAnimals.txt > new.txt
+nikita@ubuntuM1:~$ ls
+Desktop    Downloads  new.txt          Pets.txt  Public  Videos
+Documents  Music      PackAnimals.txt  Pictures  users
+nikita@ubuntuM1:~$ cat new.txt
+Dogs
+Cats
+Hamstars
+Horses
+Camels
+Donkeys
+nikita@ubuntuM1:~$ mv new.txt HumanFriends.txt
+nikita@ubuntuM1:~$ ls
+Desktop    Downloads         Music            Pets.txt  Public  Videos
+Documents  HumanFriends.txt  PackAnimals.txt  Pictures  users
+nikita@ubuntuM1:~$ cat HumanFriends.txt 
+Dogs
+Cats
+Hamstars
+Horses
+Camels
+Donkeys
+
+
+nikita@ubuntuM1:~$ mkdir Somefolder
+nikita@ubuntuM1:~$ ls
+Desktop    Downloads         Music            Pets.txt  Public      users
+Documents  HumanFriends.txt  PackAnimals.txt  Pictures  Somefolder  Videos
+nikita@ubuntuM1:~$ mv HumanFriends.txt Somefolder/
+nikita@ubuntuM1:~$ cd Somefolder/
+nikita@ubuntuM1:~/Somefolder$ ls
+HumanFriends.txt
+nikita@ubuntuM1:~/Somefolder$
+
+
+nikita@ubuntuM1:~/Somefolder$ cd /tmp
+nikita@ubuntuM1:/tmp$ wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.28-1_all.deb
+--2023-12-15 18:17:04--  https://dev.mysql.com/get/mysql-apt-config_0.8.28-1_all.deb
+Resolving dev.mysql.com (dev.mysql.com)... 104.71.154.229, 2600:140b:a00:6b2::2e31, 2600:140b:a00:695::2e31
+Connecting to dev.mysql.com (dev.mysql.com)|104.71.154.229|:443... connected.
+HTTP request sent, awaiting response... 302 Moved Temporarily
+Location: https://repo.mysql.com//mysql-apt-config_0.8.28-1_all.deb [following]
+--2023-12-15 18:17:05--  https://repo.mysql.com//mysql-apt-config_0.8.28-1_all.deb
+Resolving repo.mysql.com (repo.mysql.com)... 23.47.146.211, 2a02:26f0:9500:b8a::1d68, 2a02:26f0:9500:b83::1d68
+Connecting to repo.mysql.com (repo.mysql.com)|23.47.146.211|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 18124 (18K) [application/x-debian-package]
+Saving to: ‘mysql-apt-config_0.8.28-1_all.deb’
+mysql-apt-config_0.8.28-1_all 100%[=================================================>]  17,70K  --.-KB/s    in 0s      
+2023-12-15 18:17:06 (120 MB/s) - ‘mysql-apt-config_0.8.28-1_all.deb’ saved [18124/18124]
+
+root@ubuntuM1:/tmp# dpkg -i mysql-apt-config_0.8.28-1_all.deb
+(Reading database ... 220283 files and directories currently installed.)
+Preparing to unpack mysql-apt-config_0.8.28-1_all.deb ...
+Unpacking mysql-apt-config (0.8.28-1) over (0.8.28-1) ...
+Setting up mysql-apt-config (0.8.28-1) ...
+root@ubuntuM1:/tmp# apt update
+Hit:1 http://nginx.org/packages/ubuntu jammy InRelease
+Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [110 kB]                                          
+Hit:3 http://ru.ports.ubuntu.com/ubuntu-ports jammy InRelease                                         
+Get:4 http://repo.mysql.com/apt/ubuntu jammy InRelease [20,2 kB]                                      
+Err:4 http://repo.mysql.com/apt/ubuntu jammy InRelease                                                             
+  The following signatures were invalid: EXPKEYSIG 467B942D3A79BD29 MySQL Release Engineering <mysql-build@oss.oracle.com>
+Get:5 http://ru.ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [119 kB] 
+Hit:6 https://download.docker.com/linux/ubuntu focal InRelease                             
+Hit:7 https://download.docker.com/linux/ubuntu jammy InRelease                 
+Get:8 http://ports.ubuntu.com/ubuntu-ports jammy-proposed InRelease [270 kB]   
+Hit:9 http://ru.ports.ubuntu.com/ubuntu-ports jammy-backports InRelease
+Reading package lists... Done                            
+W: GPG error: http://repo.mysql.com/apt/ubuntu jammy InRelease: The following signatures were invalid: EXPKEYSIG 467B942D3A79BD29 MySQL Release Engineering <mysql-build@oss.oracle.com>
+E: The repository 'http://repo.mysql.com/apt/ubuntu jammy InRelease' is not signed.
+N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+W: https://download.docker.com/linux/ubuntu/dists/focal/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+root@ubuntuM1:/tmp# cd ..
+root@ubuntuM1:/# cd etc/
+root@ubuntuM1:/etc# cd apt/
+root@ubuntuM1:/etc/apt# ls
+apt.conf.d  auth.conf.d  keyrings  preferences.d  sources.list  sources.list.d  trusted.gpg  trusted.gpg.d
+root@ubuntuM1:/etc/apt# cd sources.list.d/
+root@ubuntuM1:/etc/apt/sources.list.d# ls
+archive_uri-https_download_docker_com_linux_ubuntu-jammy.list  docker.list  mysql.list  nginx.list  proposed.list
+root@ubuntuM1:/etc/apt/sources.list.d# cat mysql.list 
+### THIS FILE IS AUTOMATICALLY CONFIGURED ###
+# You may comment out entries below, but any other modifications may be lost.
+# Use command 'dpkg-reconfigure mysql-apt-config' as root for modifications.
+deb [signed-by=/usr/share/keyrings/mysql-apt-config.gpg] http://repo.mysql.com/apt/ubuntu/ jammy mysql-apt-config
+deb [signed-by=/usr/share/keyrings/mysql-apt-config.gpg] http://repo.mysql.com/apt/ubuntu/ jammy mysql-innovation
+deb [signed-by=/usr/share/keyrings/mysql-apt-config.gpg] http://repo.mysql.com/apt/ubuntu/ jammy mysql-tools
+deb [signed-by=/usr/share/keyrings/mysql-apt-config.gpg] http://repo.mysql.com/apt/ubuntu/ jammy mysql-tools-preview
+deb-src [signed-by=/usr/share/keyrings/mysql-apt-config.gpg] http://repo.mysql.com/apt/ubuntu/ jammy mysql-innovation
+root@ubuntuM1:/etc/apt/sources.list.d# 
+
+
+nikita@ubuntuM1:~$ ls
+Desktop    Downloads  PackAnimals.txt  Pictures  Somefolder                        users
+Documents  Music      Pets.txt         Public    traceroute_1%3a2.1.0-2_arm64.deb  Videos
+nikita@ubuntuM1:~$ sudo dpkg -i traceroute_1%3a2.1.0-2_arm64.deb
+Selecting previously unselected package traceroute.
+(Reading database ... 220263 files and directories currently installed.)
+Preparing to unpack traceroute_1%3a2.1.0-2_arm64.deb ...
+Unpacking traceroute (1:2.1.0-2) ...
+Setting up traceroute (1:2.1.0-2) ...
+update-alternatives: using /usr/bin/traceroute.db to provide /usr/bin/traceroute (traceroute) in auto mode
+update-alternatives: using /usr/bin/traceroute6.db to provide /usr/bin/traceroute6 (traceroute6) in auto mode
+update-alternatives: using /usr/bin/lft.db to provide /usr/bin/lft (lft) in auto mode
+update-alternatives: using /usr/bin/traceproto.db to provide /usr/bin/traceproto (traceproto) in auto mode
+update-alternatives: using /usr/sbin/tcptraceroute.db to provide /usr/sbin/tcptraceroute (tcptraceroute) in auto mode
+Processing triggers for man-db (2.10.2-1) ...
+nikita@ubuntuM1:~$ dpkg -l traceroute
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name           Version      Architecture Description
++++-==============-============-============-===========================================================
+ii  traceroute     1:2.1.0-2    arm64        Traces the route taken by packets over an IPv4/IPv6 network
+nikita@ubuntuM1:~$ sudo dpkg -r traceroute
+(Reading database ... 220283 files and directories currently installed.)
+Removing traceroute (1:2.1.0-2) ...
+Processing triggers for man-db (2.10.2-1) ...
+nikita@ubuntuM1:~$ dpkg -l traceroute
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name           Version      Architecture Description
++++-==============-============-============-=================================
+un  traceroute     <none>       <none>       (no description available)
+nikita@ubuntuM1:~$ 
+
+
+ 1243  ls
+ 1244  cat > Pets.txt
+ 1245  cat > PackAnimals.txt
+ 1246  cat Pets.txt PackAnimals.txt > new.txt
+ 1247  ls
+ 1248  cat new.txt
+ 1249  mv new.txt HumanFriends.txt
+ 1250  ls
+ 1251  cat HumanFriends.txt 
+
+ 1252  mkdir Somefolder
+ 1253  ls
+ 1254  mv HumanFriends.txt Somefolder/
+ 1255  cd Somefolder/
+ 1256  ls
+
+ 1257  cd /tmp
+ 1258  wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.28-1_all.deb
+ 1259  dpkg -i mysql-apt-config_0.8.28-1_all.deb
+
+ 1260  ls
+ 1261  sudo dpkg -i traceroute_1%3a2.1.0-2_arm64.deb
+ 1262  dpkg -l traceroute
+ 1263  sudo dpkg -r traceroute
+ 1264  dpkg -l traceroute
+ 1265  clear
+ 1266  history
