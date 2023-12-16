@@ -1,0 +1,300 @@
+nikita@ubuntuM1:~$ sudo mysql
+[sudo] password for nikita: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.34-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| gb                 |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0,01 sec)
+
+mysql> CREATE database HumanFriends;
+Query OK, 1 row affected (0,01 sec)
+
+mysql> USE HumanFriends;
+Database changed
+mysql> CREATE table dogs (ID int PRIMARY KEY, name varchar(10), type varchar(10), birthdate date, commands varchar(30));
+Query OK, 0 rows affected (0,02 sec)
+
+mysql> INSERT INTO dogs VALUES (1, 'Fido', 'Dog', '2020-01-01', 'Sit,Stay,Fetch');
+Query OK, 1 row affected (0,03 sec)
+
+mysql> INSERT INTO dogs VALUES (2, 'Bella', 'Dog', '2019-11-11', 'Sit,Stay,Roll');
+Query OK, 1 row affected (0,02 sec)
+
+mysql> INSERT INTO dogs VALUES (3, 'Buddy', 'Dog', '2018-12-10', 'Sit,Paw,Bark');
+Query OK, 1 row affected (0,03 sec)
+
+mysql> SELECT * FROM dogs;
++----+-------+------+------------+----------------+
+| ID | name  | type | birthdate  | commands       |
++----+-------+------+------------+----------------+
+|  1 | Fido  | Dog  | 2020-01-01 | Sit,Stay,Fetch |
+|  2 | Bella | Dog  | 2019-11-11 | Sit,Stay,Roll  |
+|  3 | Buddy | Dog  | 2018-12-10 | Sit,Paw,Bark   |
++----+-------+------+------------+----------------+
+3 rows in set (0,01 sec)
+
+mysql> CREATE table cats (ID int PRIMARY KEY, name varchar(10), type varchar(10), birthdate date, commands varchar(30));
+Query OK, 0 rows affected (0,05 sec)
+
+mysql> INSERT INTO cats VALUES (4, 'Whiskers', 'Cat', '2019-05-15', 'Sit,Pounce');
+Query OK, 1 row affected (0,01 sec)
+
+mysql> INSERT INTO cats VALUES (5, 'Smudge', 'Cat', '2020-02-20', 'Sit,Pounce,Scratch');
+Query OK, 1 row affected (0,00 sec)
+
+mysql> INSERT INTO cats VALUES (6, 'Oliver', 'Cat', '2020-06-30', 'Meow,Scratch,Jump');
+Query OK, 1 row affected (0,01 sec)
+
+mysql> SELECT * FROM cats;
++----+----------+------+------------+--------------------+
+| ID | name     | type | birthdate  | commands           |
++----+----------+------+------------+--------------------+
+|  4 | Whiskers | Cat  | 2019-05-15 | Sit,Pounce         |
+|  5 | Smudge   | Cat  | 2020-02-20 | Sit,Pounce,Scratch |
+|  6 | Oliver   | Cat  | 2020-06-30 | Meow,Scratch,Jump  |
++----+----------+------+------------+--------------------+
+3 rows in set (0,00 sec)
+
+mysql> CREATE table hamsters (ID int PRIMARY KEY, name varchar(10), type varchar(10), birthdate date, commands varchar(30));
+Query OK, 0 rows affected (0,03 sec)
+
+mysql> INSERT INTO hamsters VALUES (7, 'Hammy', 'Hamster', '2021-03-10', 'Roll,Hide');
+Query OK, 1 row affected (0,01 sec)
+
+mysql> INSERT INTO hamsters VALUES (8, 'Peanut', 'Hamster', '2021-08-01', 'Roll,Spin');
+Query OK, 1 row affected (0,01 sec)
+
+mysql> SELECT * FROM hamsters;
++----+--------+---------+------------+-----------+
+| ID | name   | type    | birthdate  | commands  |
++----+--------+---------+------------+-----------+
+|  7 | Hammy  | Hamster | 2021-03-10 | Roll,Hide |
+|  8 | Peanut | Hamster | 2021-08-01 | Roll,Spin |
++----+--------+---------+------------+-----------+
+2 rows in set (0,00 sec)
+
+mysql> CREATE table horses (ID int PRIMARY KEY, name varchar(10), type varchar(10), birthdate date, commands varchar(30));
+Query OK, 0 rows affected (0,04 sec)
+
+mysql> INSERT INTO horses VALUES (10, 'Thunder', 'Horse', '2015-07-21', 'Trot,Canter,Gallop');
+Query OK, 1 row affected (0,01 sec)
+
+mysql> INSERT INTO horses VALUES (11, 'Storm', 'Horse', '2014-05-05', 'Trot,Canter');
+Query OK, 1 row affected (0,00 sec)
+
+mysql> INSERT INTO horses VALUES (12, 'Blaze', 'Horse', '2016-02-29', 'Trot,Jump,Gallop');
+Query OK, 1 row affected (0,01 sec)
+
+mysql> SELECT * FROM horses;
++----+---------+-------+------------+--------------------+
+| ID | name    | type  | birthdate  | commands           |
++----+---------+-------+------------+--------------------+
+| 10 | Thunder | Horse | 2015-07-21 | Trot,Canter,Gallop |
+| 11 | Storm   | Horse | 2014-05-05 | Trot,Canter        |
+| 12 | Blaze   | Horse | 2016-02-29 | Trot,Jump,Gallop   |
++----+---------+-------+------------+--------------------+
+3 rows in set (0,00 sec)
+
+mysql> CREATE table camels (ID int PRIMARY KEY, name varchar(10), type varchar(10), birthdate date, commands varchar(30));
+Query OK, 0 rows affected (0,04 sec)
+
+mysql> INSERT INTO camels VALUES (13, 'Sandy', 'Camel', '2016-11-03', 'Walk,CarryLoad');
+Query OK, 1 row affected (0,01 sec)
+
+mysql> INSERT INTO camels VALUES (14, 'Dune', 'Camel', '2018-12-12', 'Walk,Sit');
+Query OK, 1 row affected (0,01 sec)
+
+mysql> INSERT INTO camels VALUES (15, 'Sahara', 'Camel', '2015-08-14', 'Walk,Run');
+Query OK, 1 row affected (0,01 sec)
+
+mysql> SELECT * FROM camels;
++----+--------+-------+------------+----------------+
+| ID | name   | type  | birthdate  | commands       |
++----+--------+-------+------------+----------------+
+| 13 | Sandy  | Camel | 2016-11-03 | Walk,CarryLoad |
+| 14 | Dune   | Camel | 2018-12-12 | Walk,Sit       |
+| 15 | Sahara | Camel | 2015-08-14 | Walk,Run       |
++----+--------+-------+------------+----------------+
+3 rows in set (0,00 sec)
+
+mysql> CREATE table donkeys (ID int PRIMARY KEY, name varchar(10), type varchar(10), birthdate date, commands varchar(30));
+Query OK, 0 rows affected (0,03 sec)
+
+mysql> INSERT INTO donkeys VALUES (16, 'Eeyore', 'Donkey', '2017-09-18', 'Walk,CarryLoad,Bray');
+Query OK, 1 row affected (0,01 sec)
+
+mysql> INSERT INTO donkeys VALUES (9, 'Burro', 'Donkey', '2019-01-23', 'Walk,Bray,Kick');
+Query OK, 1 row affected (0,01 sec)
+
+mysql> SELECT * FROM donkeys;
++----+--------+--------+------------+---------------------+
+| ID | name   | type   | birthdate  | commands            |
++----+--------+--------+------------+---------------------+
+|  9 | Burro  | Donkey | 2019-01-23 | Walk,Bray,Kick      |
+| 16 | Eeyore | Donkey | 2017-09-18 | Walk,CarryLoad,Bray |
++----+--------+--------+------------+---------------------+
+2 rows in set (0,00 sec)
+
+mysql> DROP TABLE camels;
+Query OK, 0 rows affected (0,04 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_HumanFriends |
++------------------------+
+| cats                   |
+| dogs                   |
+| donkeys                |
+| hamsters               |
+| horses                 |
++------------------------+
+5 rows in set (0,01 sec)
+
+mysql> SELECT * FROM donkeys UNION SELECT * FROM horses;
++----+---------+--------+------------+---------------------+
+| ID | name    | type   | birthdate  | commands            |
++----+---------+--------+------------+---------------------+
+|  9 | Burro   | Donkey | 2019-01-23 | Walk,Bray,Kick      |
+| 16 | Eeyore  | Donkey | 2017-09-18 | Walk,CarryLoad,Bray |
+| 10 | Thunder | Horse  | 2015-07-21 | Trot,Canter,Gallop  |
+| 11 | Storm   | Horse  | 2014-05-05 | Trot,Canter         |
+| 12 | Blaze   | Horse  | 2016-02-29 | Trot,Jump,Gallop    |
++----+---------+--------+------------+---------------------+
+5 rows in set (0,01 sec)
+
+mysql> CREATE table camels (ID int PRIMARY KEY, name varchar(10), type varchar(10), birthdate date, commands varchar(30));
+Query OK, 0 rows affected (0,04 sec)
+
+mysql> INSERT INTO camels VALUES (13, 'Sandy', 'Camel', '2016-11-03', 'Walk,CarryLoad');
+Query OK, 1 row affected (0,00 sec)
+
+mysql> INSERT INTO camels VALUES (14, 'Dune', 'Camel', '2018-12-12', 'Walk,Sit');
+Query OK, 1 row affected (0,01 sec)
+
+mysql> INSERT INTO camels VALUES (15, 'Sahara', 'Camel', '2015-08-14', 'Walk,Run');
+Query OK, 1 row affected (0,01 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_HumanFriends |
++------------------------+
+| camels                 |
+| cats                   |
+| dogs                   |
+| donkeys                |
+| hamsters               |
+| horses                 |
+| packAnimals            |
++------------------------+
+7 rows in set (0,01 sec)
+
+mysql> CREATE TABLE animals AS 
+    -> SELECT * FROM camels
+    -> UNION
+    -> SELECT * FROM cats
+    -> UNION
+    -> SELECT * FROM dogs
+    -> UNION
+    -> SELECT * FROM donkeys
+    -> UNION
+    -> SELECT * FROM hamsters
+    -> UNION
+    -> SELECT * FROM horses;
+Query OK, 16 rows affected (0,04 sec)
+Records: 16  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++------------------------+
+| Tables_in_HumanFriends |
++------------------------+
+| animals                |
+| camels                 |
+| cats                   |
+| dogs                   |
+| donkeys                |
+| hamsters               |
+| horses                 |
+| packAnimals            |
++------------------------+
+8 rows in set (0,01 sec)
+
+mysql> SELECT name,TIMESTAMPDIFF(month, animals.birthdate, NOW())AS age FROM animals;
++----------+------+
+| name     | age  |
++----------+------+
+| Sandy    |   85 |
+| Dune     |   60 |
+| Sahara   |  100 |
+| Whiskers |   55 |
+| Smudge   |   45 |
+| Oliver   |   41 |
+| Fido     |   47 |
+| Bella    |   49 |
+| Buddy    |   60 |
+| Burro    |   58 |
+| Eeyore   |   74 |
+| Hammy    |   33 |
+| Peanut   |   28 |
+| Thunder  |  100 |
+| Storm    |  115 |
+| Blaze    |   93 |
++----------+------+
+16 rows in set (0,01 sec)
+
+mysql> SELECT * FROM animals WHERE TIMESTAMPDIFF(MONTH,animals.birthdate,NOW()) BETWEEN 12 AND 36;
++----+--------+---------+------------+-----------+
+| ID | name   | type    | birthdate  | commands  |
++----+--------+---------+------------+-----------+
+|  7 | Hammy  | Hamster | 2021-03-10 | Roll,Hide |
+|  8 | Peanut | Hamster | 2021-08-01 | Roll,Spin |
++----+--------+---------+------------+-----------+
+2 rows in set (0,00 sec)
+
+mysql> CREATE TABLE youngPackAnimals AS SELECT * FROM animals WHERE TIMESTAMPDIFF(MONTH,animals.birthdate,NOW()) BETWEEN 12 AND 36;
+Query OK, 2 rows affected (0,05 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++------------------------+
+| Tables_in_HumanFriends |
++------------------------+
+| animals                |
+| camels                 |
+| cats                   |
+| dogs                   |
+| donkeys                |
+| hamsters               |
+| horses                 |
+| packAnimals            |
+| youngPackAnimals       |
++------------------------+
+9 rows in set (0,01 sec)
+
+mysql> SELECT * FROM youngPackAnimals;
++----+--------+---------+------------+-----------+
+| ID | name   | type    | birthdate  | commands  |
++----+--------+---------+------------+-----------+
+|  7 | Hammy  | Hamster | 2021-03-10 | Roll,Hide |
+|  8 | Peanut | Hamster | 2021-08-01 | Roll,Spin |
++----+--------+---------+------------+-----------+
+2 rows in set (0,00 sec)
+
+mysql> 
